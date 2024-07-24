@@ -1,0 +1,23 @@
+export const GlobalImages = [
+  '/images/rendered_image_0.webp',
+  '/images/rendered_image_1.webp',
+  '/images/rendered_image_2.webp',
+  '/images/rendered_image_3.webp',
+  '/images/rendered_image_4.webp',
+  '/images/rendered_image_5.webp',
+  '/images/rendered_image_6.webp',
+  '/images/rendered_image_7.webp',
+  '/images/rendered_image_8.webp',
+  '/images/rendered_image_9.webp',
+  '/images/rendered_image_10.webp',
+  '/images/rendered_image_11.webp',
+  '/images/rendered_image_12.webp',
+  '/images/rendered_image_13.webp',
+  '/images/rendered_image_14.webp',
+  '/images/rendered_image_15.webp',
+  '/images/rendered_image_16.webp',
+  '/images/rendered_image_17.webp',
+  '/images/rendered_image_18.webp',
+  '/images/rendered_image_19.webp',
+];
+

@@ -4,7 +4,7 @@ import React, { SetStateAction, useCallback, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
 import { GradientButton } from './button';
-import { RollingImages } from './rollingImages';
+import { RollingImages } from './rolling-images';
 import { classNames } from '../utils/common';
 
 export function MainContent() {
@@ -30,15 +30,15 @@ export function MainContent() {
           <GradientButton className={'h-8'} content={"Favorite"}/>  
         </div>
 
-        <div className={'flex flex-col '}>
-          <RollingImages></RollingImages>
+        <div className={'flex flex-col flex-grow'}>
+          <RollingImages />
 
-          <RollingImages></RollingImages>
+          <RollingImages inverse={true}/>
 
-          <RollingImages></RollingImages>
+          <RollingImages />
         </div>
 
-        <div className={'flex flex-row w-full justify-center items-center'}>
+        <div className={'flex flex-row w-full justify-center items-center  mb-14'}>
           <textarea
             className={classNames(
               'overflow-hidden w-96 resize-none rounded-xl bg-gray-600 py-3 px-4 text-white focus:outline-none',
