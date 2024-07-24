@@ -11,16 +11,17 @@ export function CustomizeImage(props: ImageProps) {
 
   return (
     <div
-      className="flex bg-white relative w-24 h-24"
+      className={`flex bg-white relative w-48 h-48 ${hover ? 'cursor-pointer' : ''}`} 
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
     >
       <div
-        className="w-24 h-24 absolute bg-cover bg-no-repeat"
+        className="w-48 h-48 absolute bg-cover bg-no-repeat"
         style={{ backgroundImage: `url(${src})` }}
       />
       <div
-        className={`w-24 h-12 rounded-lg mt-7 ${hover ? 'bg-gray-300' : 'bg-white'}`}
+        className={`w-48 h-24 rounded-lg mt-7 ${hover ? 'bg-gray-300' : 'bg-white'}`}
       ></div>
     </div>
   );
