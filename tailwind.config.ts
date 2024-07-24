@@ -21,7 +21,12 @@ const config: Config = {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
         }
-      }        
+      },
+      colors: {
+        gray: {
+          '600': '#888888'
+        }
+      }   
     },
   },
   plugins: [],

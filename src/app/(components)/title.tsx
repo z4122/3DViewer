@@ -10,7 +10,7 @@ export function Title() {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
-    <div className="flex justify-between border border-solid border-stone-200 bg-slate-100 pb-4 pe-4 ps-4 pt-4">
+    <div className="flex justify-between pb-4 pe-4 ps-4 pt-4 bg-black">
       <Image
         alt={'logo'}
         src={'/logo.png'}

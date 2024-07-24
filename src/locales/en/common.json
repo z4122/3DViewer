@@ -1,5 +1,6 @@
 {
   "chat_tips": "Input command to start chat",
+  "prompt_tips": "Input your prompt here",
   "languages": "Language",
   "input_key_tips": "Input your api key to access chatgpt",
   "input_proxy_tips": "Input proxy address if needed",

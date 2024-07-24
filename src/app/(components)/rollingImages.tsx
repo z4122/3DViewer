@@ -2,7 +2,7 @@
 
 export function RollingImages() {
   return (
-    <div className="relative flex flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12 overflow-hidden">
+    <div className="relative flex flex-col justify-center overflow-hidden bg-black py-6 sm:py-12 overflow-hidden">
 <div className="flex overflow-hidden space-x-16 group">
   <div className="flex space-x-16 animate-loop-scroll group-hover:paused">
     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8ee9f161-df19-4fa7-a2a6-edf9acf0e0d6?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&" className="max-w-none" alt="Image 1" />

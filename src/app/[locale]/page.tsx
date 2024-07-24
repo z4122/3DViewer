@@ -14,7 +14,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
       locale={params.locale}
       resources={resources}
     >
-      <div className="flex h-screen flex-col">
+      <div className="flex h-screen flex-col bg-black">
         <Title />
         <MainContent />
         {/* </div> */}
