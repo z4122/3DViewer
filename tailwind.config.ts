@@ -14,8 +14,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       animation: {
-        'loop-scroll': 'loop-scroll 50s linear infinite',
-        'loop-scroll-inverse': 'loop-scroll-inverse 50s linear infinite',
+        'loop-scroll': 'loop-scroll 200s linear infinite',
+        'loop-scroll-inverse': 'loop-scroll-inverse 250s linear infinite',
       },
       keyframes: {
         'loop-scroll': {
