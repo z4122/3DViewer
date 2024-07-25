@@ -14,8 +14,8 @@ type Props = {
 }
 
 const CloseIconWrapper = styled('div')({
-  position: 'absolute', 
-  top: '32px', 
+  position: 'absolute',
+  top: '32px',
   right: '32px',
 
   '&:hover': {
@@ -28,11 +28,20 @@ export function ThreeViewer(props: Props) {
 
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>();
   const [render, setRenderer] = useState<Renderer | null>();
+  const [paramsChanged, setParamsChanged] = useState(0)
 
   const [currentMesh, setCurrentMesh] = useState<THREE.Mesh | null>(null)
 
   const onSelectModel = (mesh: THREE.Mesh | null) => {
     setCurrentMesh(mesh)
+  }
+
+  const onMeshPropsChange = () => {
+    setParamsChanged((paramsChanged) => {
+      return {
+        paramsChanged: paramsChanged + 1
+      }
+    })
   }
 
   const exportAs = (type: 'gltf' | 'glb' | 'stl') => {
@@ -41,14 +50,14 @@ export function ThreeViewer(props: Props) {
 
   useEffect(() => {
     if (canvas) {
-      const renderer = new Renderer(canvas, onSelectModel);
+      const renderer = new Renderer(canvas, onSelectModel, onMeshPropsChange);
       setRenderer(renderer);
       return () => {
         renderer.dispose();
       };
     }
 
-    return () => {};
+    return () => { };
   }, [canvas]);
 
   useEffect(() => {
@@ -73,25 +82,25 @@ export function ThreeViewer(props: Props) {
       open={true}
       handleClose={handleClose}
     >
-    <canvas
-      style={{ width: '100%', height: '100%', position: 'absolute' }}
-      ref={setCanvas}
-    ></canvas>
+      <canvas
+        style={{ width: '100%', height: '100%', position: 'absolute' }}
+        ref={setCanvas}
+      ></canvas>
 
-    {currentMesh && <AttributePanel mesh={currentMesh}/>}
+      {currentMesh && <AttributePanel mesh={currentMesh} paramsChanged={paramsChanged} />}
 
-    <CloseIconWrapper onClick={handleClose}>
-      <CloseIcon></CloseIcon>
-    </CloseIconWrapper>
+      <CloseIconWrapper onClick={handleClose}>
+        <CloseIcon></CloseIcon>
+      </CloseIconWrapper>
 
-    <div style={{position: 'absolute', left: '32px', bottom: '32px'}}>
-      <div>Fake Model Name Is Here</div>
-      <div>Fake Prompt Is Here</div>
-    </div>
+      <div style={{ position: 'absolute', left: '32px', bottom: '32px' }}>
+        <div>Fake Model Name Is Here</div>
+        <div>Fake Prompt Is Here</div>
+      </div>
 
-    <div style={{position: 'absolute', right: '32px', bottom: '32px'}}>
-      <ExportDropDown exportAs={exportAs}/>
-    </div>
+      <div style={{ position: 'absolute', right: '32px', bottom: '32px' }}>
+        <ExportDropDown exportAs={exportAs} />
+      </div>
     </ClosableDialog>
   )
 }

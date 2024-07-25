@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter';
@@ -25,6 +26,7 @@ export class Renderer {
 
   private _animationId: number;
   private _controls: OrbitControls;
+  private _transformControl: TransformControls;
   private _pointLight: THREE.PointLight;
 
   private _loader = new GLTFLoader();
@@ -35,7 +37,7 @@ export class Renderer {
 
   private _onSelectModel: (mesh: THREE.Mesh | null) => void
 
-  constructor(canvas: HTMLCanvasElement, onSelectModel: (mesh: THREE.Mesh | null) => void) {
+  constructor(canvas: HTMLCanvasElement, onSelectModel: (mesh: THREE.Mesh | null) => void, onMeshPropsChange: () => void) {
     this.canvas = canvas;
     this._onSelectModel = onSelectModel
 
@@ -71,6 +73,16 @@ export class Renderer {
       MIDDLE: 2,
       RIGHT: 0,
     };
+
+    this._transformControl = new TransformControls(this.camera, this.canvas);
+
+    this._transformControl.addEventListener('dragging-changed', (event) => {
+      this._controls.enabled = !event.value;
+    });
+
+    this._transformControl.addEventListener('change', () => {
+      onMeshPropsChange()
+    });
 
     // init light
     this._pointLight = new THREE.PointLight(0xffffff, 3, 0, 0);
@@ -198,13 +210,16 @@ export class Renderer {
     const intersects = this._raycaster.intersectObjects([this.scene]);
 
     for (let i = 0; i < intersects.length; i++) {
-      this._onSelectModel(intersects[i].object as THREE.Mesh)
-      this._scaleControls.showScaleControl(
-        intersects[i].object as THREE.Mesh,
-      );
-      return;
+      if (intersects[i].object instanceof THREE.Mesh && intersects[i].object.type !== "TransformControlsPlane") {
+        this._onSelectModel(intersects[i].object as THREE.Mesh)
+        this.scene.add(this._transformControl)
+        this._transformControl.attach(intersects[i].object)
+        return;
+      }
     }
 
     this._onSelectModel(null)
+    this._transformControl.detach()
+    this.scene.remove(this._transformControl)
   }
 }

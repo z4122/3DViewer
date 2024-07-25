@@ -1,15 +1,19 @@
 import * as THREE from 'three';
 import { PopOverAccordion } from './popover-accordion';
 import { PropAndInput } from './props-input';
+import { useEffect } from 'react';
 
 type Props = {
   mesh: THREE.Mesh
+  paramsChanged: number
 }
 
-const loader = new THREE.ImageLoader();
-
 export function AttributePanel(props: Props) {
-  const { mesh } = props
+  const { mesh, paramsChanged } = props
+
+  useEffect(() => {
+
+  }, [paramsChanged])
 
   const handleOpenFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target?.files?.[0];
@@ -61,12 +65,11 @@ export function AttributePanel(props: Props) {
             </div>
           </div>
 
-
           <div>
             <div style={{ color: '#ccc', fontSize: '16px' }}>Texture</div>
             <input
               accept={
-                // only accept three types of file.
+                // Only accept three types of file.
                 '.png,.jpg,.jpeg'
               }
               style={{ display: 'none' }}
