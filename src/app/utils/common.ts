@@ -29,3 +29,8 @@ export function saveToLocal(content: { [key: string]: any; } | ArrayBuffer, type
     saveString(output, 'scene.' + type);
   }
 }
+
+export const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|touchscreen|mobi|tablet|Windows Phone/i.test(
+    navigator.userAgent
+  )

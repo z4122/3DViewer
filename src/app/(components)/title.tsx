@@ -13,7 +13,7 @@ export function Title() {
     <div className="flex justify-between pb-4 pe-4 ps-4 pt-4 bg-black">
       <Image
         alt={'logo'}
-        src={'/logo.png'}
+        src={'/logo.svg'}
         className="h-10 w-32"
         width={128}
         height={40}
@@ -32,25 +32,14 @@ export function Title() {
           Community
         </Link>
         <Language />
-        <Image
-          alt={'settings'}
-          src={'/settings.svg'}
-          className="h-5 w-5 cursor-pointer"
-          width={20}
-          height={20}
-          onClick={() => {
-            console.log(settingsOpen);
-            setSettingsOpen(!settingsOpen);
-          }}
-        ></Image>
         <a
           className="cursor-pointer"
-          href="https://github.com/z4122/chat-rewrite"
+          href="https://github.com/z4122/3DViewer"
         >
           <Image
             alt={'github'}
             src={'/github.svg'}
-            className="h-5 w-5"
+            className="h-5 w-5 bg-white"
             width={20}
             height={20}
           ></Image>
