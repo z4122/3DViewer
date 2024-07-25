@@ -3,6 +3,7 @@ import { ClosableDialog } from './closable-dialog'
 import { CloseIcon } from './icons/close'
 import styled from "@mui/material/styles/styled";
 import { Renderer } from '../core/renderer';
+import ExportDropDown from './export-drop-down';
 
 
 type Props = {
@@ -45,6 +46,10 @@ export function ThreeViewer(props: Props) {
     }
   }, [glbFileUrl, render]);
 
+  const exportAs = (type: 'GLTF' | 'USDZ' | 'STL' | 'OBJ') => {
+    render?.exportAs(type)
+  }
+
   return (
     <ClosableDialog
       style={{
@@ -71,6 +76,10 @@ export function ThreeViewer(props: Props) {
       <div style={{position: 'absolute', left: '32px', bottom: '32px'}}>
         <div>Model Name Is Here</div>
         <div>Prompt Fake Is Here</div>
+      </div>
+
+      <div style={{position: 'absolute', right: '32px', bottom: '32px'}}>
+        <ExportDropDown exportAs={exportAs}/>
       </div>
     </ClosableDialog>
   )

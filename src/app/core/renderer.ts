@@ -1,7 +1,15 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
+import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter';
+import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
+import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
+
 import { ScaleControls } from './scale-controls';
+import { saveToLocal } from '../utils/common';
+
+
 
 export class Renderer {
   public readonly webGLRenderer: THREE.WebGLRenderer;
@@ -97,11 +105,32 @@ export class Renderer {
   public addGLBModel(url: string) {
     this._loader.load(url, (glb: GLTF) => {
       this._scaleControls.dispose();
-      
+
       glb.scene.scale.set(10, 10, 10);
       const model = glb.scene
       this.scene.add(model);
     });
+  }
+
+  public exportAs(type: 'GLTF' | 'USDZ' | 'STL' | 'OBJ') {
+    switch (type) {
+      case 'GLTF':
+        const exporter = new GLTFExporter();
+        exporter.parse(this.scene, (gltf) => {
+          saveToLocal(gltf)
+        }, (error) => {
+          console.log('gltf error', error)
+        })
+        break;
+      case 'USDZ':
+
+        break;
+      case 'STL':
+        break;
+
+      case 'OBJ':
+        break
+    }
   }
 
   protected onWindowResize() {
