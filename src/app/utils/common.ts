@@ -1,4 +1,4 @@
-'use client';
+import { useEffect, useState } from 'react';
 
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -32,7 +32,13 @@ export function saveToLocal(content: { [key: string]: any; } | ArrayBuffer, type
   }
 }
 
-export const isMobile =
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|touchscreen|mobi|tablet|Windows Phone/i.test(
-    navigator.userAgent
-  );
+export const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|touchscreen|mobi|tablet|Windows Phone/i;
+    setIsMobile(mobileRegex.test(navigator.userAgent));
+  }, []);
+
+  return isMobile;
+};

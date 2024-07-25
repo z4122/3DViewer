@@ -1,11 +1,12 @@
 import React, { SetStateAction, useCallback, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { GradientButton } from './button';
-import { classNames, isMobile } from '../utils/common';
+import { classNames, useIsMobile } from '../utils/common';
 
 export function FooterArea() {
   const { t } = useTranslation('common');
 
+  const isMobile = useIsMobile();
   const [text, setText] = useState('');
   const [focused, setFocused] = useState(false);
   const onTextChanged = useCallback(

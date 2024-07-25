@@ -7,7 +7,7 @@ type ButtonProps = {
   endColor?: string,
 }
 
-const GradientButtonWrapper = styled('div')<{endColor: string}>(({ endColor }) => ({
+const GradientButtonWrapper = styled('div')<{ endColor: string }>(({ endColor }) => ({
   display: 'flex',
   background: 'transparent',
   height: '100%',
@@ -16,8 +16,9 @@ const GradientButtonWrapper = styled('div')<{endColor: string}>(({ endColor }) =
   overflow: 'hidden',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 1, 
+  zIndex: 1,
   borderRadius: '20px',
+  textWrap: 'nowrap',
 
   '&:hover': {
     // color: '#FFFFFF',
@@ -29,13 +30,13 @@ const GradientButtonWrapper = styled('div')<{endColor: string}>(({ endColor }) =
     position: 'absolute',
     top: 0,
     left: 0,
-    width: '200%', 
+    width: '200%',
     height: '100%',
     background: `linear-gradient(90deg, ${endColor} 50%, ${endColor} 50%)`,
-    transform: 'translateX(-100%)', 
+    transform: 'translateX(-100%)',
     transition: 'transform 0.3s ease-in-out',
     zIndex: -1,
-    borderRadius: '20px', 
+    borderRadius: '20px',
   },
   '&:hover::before': {
     transform: 'translateX(-50%)',
@@ -43,7 +44,7 @@ const GradientButtonWrapper = styled('div')<{endColor: string}>(({ endColor }) =
 }));
 
 export function GradientButton(props: ButtonProps) {
-  const {content, className, initColor = '#202020', endColor = '#404040 '} = props;
+  const { content, className, initColor = '#202020', endColor = '#404040 ' } = props;
 
   return (
     <div style={{ background: initColor, borderRadius: '30px' }} className={className} >
