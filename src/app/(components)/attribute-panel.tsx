@@ -2,13 +2,29 @@ import * as THREE from 'three';
 import { PopOverAccordion } from './popover-accordion';
 import { PropAndInput } from './props-input';
 
-
 type Props = {
   mesh: THREE.Mesh
 }
 
+const loader = new THREE.ImageLoader();
+
 export function AttributePanel(props: Props) {
   const { mesh } = props
+
+  const handleOpenFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target?.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(e.target?.result as string);
+        mesh.material = new THREE.MeshBasicMaterial({ map: texture });
+      };
+      reader.readAsDataURL(file);
+    }
+    // Clear the input element's value
+    event.target.value = '';
+  };
 
   return (
     <div onClick={(event) => { event.stopPropagation() }}>
@@ -43,6 +59,44 @@ export function AttributePanel(props: Props) {
               } />
               <PropAndInput name={'Z'} value={String(mesh.scale.z)} onChange={(value) => mesh.scale.z = value} />
             </div>
+          </div>
+
+
+          <div>
+            <div style={{ color: '#ccc', fontSize: '16px' }}>Texture</div>
+            <input
+              accept={
+                // only accept three types of file.
+                '.png,.jpg,.jpeg'
+              }
+              style={{ display: 'none' }}
+              id={'open-my-file' + name}
+              multiple
+              type="file"
+              onChange={handleOpenFile}
+            />
+            <label htmlFor={'open-my-file' + name}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  height: '40px',
+                  color: '#ccc',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: '700',
+                  lineHeight: '22px',
+                  marginTop: '16px',
+                  boxSizing: 'border-box',
+                  borderRadius: '8px',
+                  backgroundColor: '#333',
+                }}
+                className='cursor-pointer'
+              >Upload Texture</div>
+            </label>
+
           </div>
         </div>
       } />
