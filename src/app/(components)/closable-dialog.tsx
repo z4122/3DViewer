@@ -6,10 +6,10 @@ import {
   Paper,
   PaperProps,
   styled,
-} from '@mui/material'
-import React from 'react'
-import Draggable from 'react-draggable'
-import { CloseIcon } from './icons/close'
+} from '@mui/material';
+import React from 'react';
+import Draggable from 'react-draggable';
+import { CloseIcon } from './icons/close';
 
 type Props = {
   open: boolean
@@ -28,7 +28,7 @@ const DialogWrapper = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
   },
-}))
+}));
 
 interface DialogTitleProps {
   id: string
@@ -37,7 +37,7 @@ interface DialogTitleProps {
 }
 
 function BootstrapDialogTitle(props: DialogTitleProps & any) {
-  const { children, onClose, ...other } = props
+  const { children, onClose, ...other } = props;
 
   return (
     <DialogTitle
@@ -65,14 +65,14 @@ function BootstrapDialogTitle(props: DialogTitleProps & any) {
         </IconButton>
       ) : null}
     </DialogTitle>
-  )
+  );
 }
 
 function PaperComponent(
   props: PaperProps & { offset: { x: number | string; y: number | string } }
 ) {
   // https://github.com/react-grid-layout/react-draggable/blob/v4.4.2/lib/DraggableCore.js#L159-L171
-  const nodeRef = React.useRef(null)
+  const nodeRef = React.useRef(null);
 
   return (
     <Draggable
@@ -83,11 +83,11 @@ function PaperComponent(
     >
       <Paper ref={nodeRef} {...props} />
     </Draggable>
-  )
+  );
 }
 
 export function ClosableDialog(props: Props) {
-  const { disableAutofocus, open, title, handleClose, style, positionOffset, children } = props
+  const { disableAutofocus, open, title, handleClose, style, positionOffset, children } = props;
 
   return (
     <DialogWrapper
@@ -118,5 +118,5 @@ export function ClosableDialog(props: Props) {
       )}
       <DialogContent>{children}</DialogContent>
     </DialogWrapper>
-  )
+  );
 }

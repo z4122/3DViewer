@@ -12,9 +12,9 @@ export function CustomizeImage(props: ImageProps) {
   const [hover, setHover] = useState(false);
 
   const onClick = useCallback(() => {
-    setHover(false)
-    onOpenViewer(glb)
-  },[])
+    setHover(false);
+    onOpenViewer(glb);
+  },[]);
 
   return (
     <div

@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from 'react';
 
-function ThreeViewer(props: React.SVGProps<SVGSVGElement>) {
+function ThreeViewer(_: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
@@ -8,7 +8,7 @@ function ThreeViewer(props: React.SVGProps<SVGSVGElement>) {
         fill="white"
       />
     </svg>
-  )
+  );
 }
 
-export const ThreeViewerIcon = React.memo(ThreeViewer)
+export const ThreeViewerIcon = React.memo(ThreeViewer);

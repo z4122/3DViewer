@@ -1,4 +1,4 @@
-import styled from "@mui/material/styles/styled";
+import styled from '@mui/material/styles/styled';
 
 type ButtonProps = {
   content: string
@@ -43,11 +43,11 @@ const GradientButtonWrapper = styled('div')<{endColor: string}>(({ endColor }) =
 }));
 
 export function GradientButton(props: ButtonProps) {
-  const {content, className, initColor = '#202020', endColor = '#404040 '} = props
+  const {content, className, initColor = '#202020', endColor = '#404040 '} = props;
 
   return (
-  <div style={{ background: initColor, borderRadius: '30px' }} className={className} >
-    <GradientButtonWrapper endColor={endColor}>{content}</GradientButtonWrapper>
-  </div>
+    <div style={{ background: initColor, borderRadius: '30px' }} className={className} >
+      <GradientButtonWrapper endColor={endColor}>{content}</GradientButtonWrapper>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { ClosableDialog } from './closable-dialog'
-import { CloseIcon } from './icons/close'
-import styled from "@mui/material/styles/styled";
+import React, { useEffect, useState } from 'react';
+import { ClosableDialog } from './closable-dialog';
+import { CloseIcon } from './icons/close';
+import styled from '@mui/material/styles/styled';
 import { Renderer } from '../core/renderer';
 import ExportDropDown from './export-drop-down';
 import * as THREE from 'three';
@@ -21,32 +21,28 @@ const CloseIconWrapper = styled('div')({
   '&:hover': {
     cursor: 'pointer'
   }
-})
+});
 
 export function ThreeViewer(props: Props) {
-  const { style, handleClose, glbFileUrl } = props
+  const { style, handleClose, glbFileUrl } = props;
 
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>();
   const [render, setRenderer] = useState<Renderer | null>();
-  const [paramsChanged, setParamsChanged] = useState(0)
+  const [paramsChanged, setParamsChanged] = useState(0);
 
-  const [currentMesh, setCurrentMesh] = useState<THREE.Mesh | null>(null)
+  const [currentMesh, setCurrentMesh] = useState<THREE.Mesh | null>(null);
 
   const onSelectModel = (mesh: THREE.Mesh | null) => {
-    setCurrentMesh(mesh)
-  }
+    setCurrentMesh(mesh);
+  };
 
   const onMeshPropsChange = () => {
-    setParamsChanged((paramsChanged) => {
-      return {
-        paramsChanged: paramsChanged + 1
-      }
-    })
-  }
+    setParamsChanged((paramsChanged: number) => paramsChanged + 1);
+  };
 
   const exportAs = (type: 'gltf' | 'glb' | 'stl') => {
-    render?.exportAs(type)
-  }
+    render?.exportAs(type);
+  };
 
   useEffect(() => {
     if (canvas) {
@@ -102,5 +98,5 @@ export function ThreeViewer(props: Props) {
         <ExportDropDown exportAs={exportAs} />
       </div>
     </ClosableDialog>
-  )
+  );
 }

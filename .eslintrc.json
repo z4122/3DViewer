@@ -17,6 +17,7 @@
     "no-empty": "warn",
     "no-cond-assign": ["error", "always"],
     // 禁用基础配置汇总的规则
-    "for-direction": "off"
+    "for-direction": "off",
+    "no-unused-vars": "off"
   }
 }

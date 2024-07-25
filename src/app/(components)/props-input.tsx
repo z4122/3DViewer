@@ -1,15 +1,15 @@
-import { styled } from '@mui/material'
-import { ChangeEvent, useState, useRef, useEffect, useCallback } from 'react'
+import { styled } from '@mui/material';
+import { ChangeEvent, useState, useRef, useEffect, useCallback, ReactNode, CSSProperties, KeyboardEvent } from 'react';
 
 type Props = {
   name?: string
   value: string
   minValue?: number
   maxValue?: number
-  icon?: React.ReactNode
+  icon?: ReactNode
   unit?: string
   onChange?: (value: number) => void
-  style?: React.CSSProperties
+  style?: CSSProperties
   onInputEnter?: () => void
 }
 
@@ -41,7 +41,7 @@ const InputWrapper = styled('input')<{
     border: '1px solid #707070',
     outline: 'none',
   },
-}))
+}));
 
 export function PropAndInput(props: Props) {
   const {
@@ -54,95 +54,95 @@ export function PropAndInput(props: Props) {
     maxValue,
     style,
     onInputEnter,
-  } = props
+  } = props;
 
-  const [currentValue, setCurrentValue] = useState(value)
-  const [lastNonEmptyValue, setLastNonEmptyValue] = useState(value)
+  const [currentValue, setCurrentValue] = useState(value);
+  const [lastNonEmptyValue, setLastNonEmptyValue] = useState(value);
 
-  const unmountedRef = useRef(false)
+  const unmountedRef = useRef(false);
 
-  const inputElement = useRef<HTMLInputElement | null>(null)
+  const inputElement = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    setCurrentValue(value)
+    setCurrentValue(value);
 
     if (value !== '') {
-      setLastNonEmptyValue(value)
+      setLastNonEmptyValue(value);
     }
-  }, [value])
+  }, [value]);
 
   const updateValue = useCallback(() => {
-    let finalValue = currentValue
+    let finalValue = currentValue;
 
     if (currentValue === '') {
-      finalValue = lastNonEmptyValue
+      finalValue = lastNonEmptyValue;
     }
 
     if (finalValue !== value) {
-      const finalFloatValue = parseFloat(finalValue)
+      const finalFloatValue = parseFloat(finalValue);
       if (finalFloatValue < minValue) {
-        onChange?.(minValue)
-        setCurrentValue(minValue.toFixed(2))
-        setLastNonEmptyValue(minValue.toFixed(2))
+        onChange?.(minValue);
+        setCurrentValue(minValue.toFixed(2));
+        setLastNonEmptyValue(minValue.toFixed(2));
       } else if (maxValue !== undefined && finalFloatValue > maxValue) {
-        onChange?.(maxValue)
-        setCurrentValue(maxValue.toFixed(2))
-        setLastNonEmptyValue(maxValue.toFixed(2))
+        onChange?.(maxValue);
+        setCurrentValue(maxValue.toFixed(2));
+        setLastNonEmptyValue(maxValue.toFixed(2));
       } else {
-        onChange?.(finalFloatValue)
-        setCurrentValue(finalFloatValue.toFixed(2))
+        onChange?.(finalFloatValue);
+        setCurrentValue(finalFloatValue.toFixed(2));
       }
     } else {
-      setCurrentValue(finalValue)
+      setCurrentValue(finalValue);
     }
-  }, [value, currentValue, lastNonEmptyValue])
+  }, [value, currentValue, lastNonEmptyValue]);
 
 
-  const onFocus = () => { }
+  const onFocus = () => { };
 
   useEffect(() => {
     return () => {
-      unmountedRef.current = true
-    }
-  }, [])
+      unmountedRef.current = true;
+    };
+  }, []);
 
   const onInputValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     // 使用正则表达式判断输入是否只包含数字和小数点，并且不是空字符串或只包含一个小数点的字符串
     // 支持 .2 2. 2.2三种情况
     if (/^-?\d*(\.\d*)?$/.test(event.currentTarget.value) || event.currentTarget.value === '') {
-      setCurrentValue(event.currentTarget.value)
+      setCurrentValue(event.currentTarget.value);
 
       if (event.currentTarget.value) {
-        setLastNonEmptyValue(event.currentTarget.value)
+        setLastNonEmptyValue(event.currentTarget.value);
       }
     }
-  }
+  };
 
   // 防止退格按键把canvas上的元素给删除掉
   const onInputKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (event: KeyboardEvent<HTMLInputElement>) => {
       // 如果Ctrl被按下, 阻止事件冒泡
       if (event.ctrlKey) {
-        event.stopPropagation()
+        event.stopPropagation();
       }
 
       // 如果按下的删除键，阻止事件冒泡，仅仅能够删除当前文字
       if (event.key === 'Backspace' || event.key === 'Delete') {
-        event.stopPropagation()
+        event.stopPropagation();
       }
 
       // 如果按下的是z键，直接返回，目前没做输入框的stack
       if (event.key === 'z') {
-        return
+        return;
       }
 
       if (event.key === 'Enter') {
-        updateValue()
-        onInputEnter?.()
+        updateValue();
+        onInputEnter?.();
       }
     },
     [updateValue]
-  )
+  );
 
   return (
     <div
@@ -203,7 +203,7 @@ export function PropAndInput(props: Props) {
           onChange={onInputValueChange}
           onKeyDown={onInputKeyDown}
           onClick={(e) => {
-            e.stopPropagation()
+            e.stopPropagation();
           }}
         ></InputWrapper>
         <span
@@ -225,5 +225,5 @@ export function PropAndInput(props: Props) {
       </div>
 
     </div>
-  )
+  );
 }

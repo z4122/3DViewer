@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from 'react';
 
-function Close(props: React.SVGProps<SVGSVGElement>) {
+function Close(_: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
       <rect
@@ -22,7 +22,7 @@ function Close(props: React.SVGProps<SVGSVGElement>) {
         fill="#8A8A8A"
       />
     </svg>
-  )
+  );
 }
 
-export const CloseIcon = React.memo(Close)
+export const CloseIcon = React.memo(Close);

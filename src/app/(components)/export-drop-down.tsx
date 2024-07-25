@@ -1,5 +1,5 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 type Props = {
   exportAs: (type: 'gltf' | 'glb' | 'stl') => void
@@ -26,7 +26,7 @@ export default function ExportDropDown(props: Props) {
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-              onClick={() => exportAs("gltf")}
+              onClick={() => exportAs('gltf')}
             >
               GLTF
             </a>
@@ -35,7 +35,7 @@ export default function ExportDropDown(props: Props) {
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-              onClick={() => exportAs("glb")}
+              onClick={() => exportAs('glb')}
             >
               GLB
             </a>
@@ -52,5 +52,5 @@ export default function ExportDropDown(props: Props) {
         </div>
       </MenuItems>
     </Menu>
-  )
+  );
 }

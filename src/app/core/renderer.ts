@@ -35,11 +35,11 @@ export class Renderer {
 
   private _scaleControls: ScaleControls;
 
-  private _onSelectModel: (mesh: THREE.Mesh | null) => void
+  private _onSelectModel: (mesh: THREE.Mesh | null) => void;
 
   constructor(canvas: HTMLCanvasElement, onSelectModel: (mesh: THREE.Mesh | null) => void, onMeshPropsChange: () => void) {
     this.canvas = canvas;
-    this._onSelectModel = onSelectModel
+    this._onSelectModel = onSelectModel;
 
     this.webGLRenderer = new THREE.WebGLRenderer({
       canvas,
@@ -81,7 +81,7 @@ export class Renderer {
     });
 
     this._transformControl.addEventListener('change', () => {
-      onMeshPropsChange()
+      onMeshPropsChange();
     });
 
     // init light
@@ -119,7 +119,7 @@ export class Renderer {
       this._scaleControls.dispose();
 
       glb.scene.scale.set(10, 10, 10);
-      const model = glb.scene
+      const model = glb.scene;
       this.scene.add(model);
     });
   }
@@ -127,30 +127,30 @@ export class Renderer {
   public exportAs(type: 'gltf' | 'glb' | 'stl') {
     let exporter: GLTFExporter | USDZExporter | STLExporter | OBJExporter;
     switch (type) {
-      case 'gltf': {
-        exporter = new GLTFExporter();
-        exporter.parse(this.scene, (result) => {
-          saveToLocal(result, type);
-        }, (error) => {
-          console.log('exporter error', type, error);
-        })
-        break;
-      }
-      case 'glb': {
-        exporter = new GLTFExporter();
-        exporter.parse(this.scene, (result) => {
-          saveToLocal(result, type);
-        }, (error) => {
-          console.log('exporter error', type, error);
-        }, { binary: true })
-        break;
-      }
-      case 'stl': {
-        exporter = new STLExporter();
-        const result = exporter.parse(this.scene, { binary: true });
-        saveString(result, 'scene.stl');
-        break;
-      }
+    case 'gltf': {
+      exporter = new GLTFExporter();
+      exporter.parse(this.scene, (result) => {
+        saveToLocal(result, type);
+      }, (error) => {
+        console.log('exporter error', type, error);
+      });
+      break;
+    }
+    case 'glb': {
+      exporter = new GLTFExporter();
+      exporter.parse(this.scene, (result) => {
+        saveToLocal(result, type);
+      }, (error) => {
+        console.log('exporter error', type, error);
+      }, { binary: true });
+      break;
+    }
+    case 'stl': {
+      exporter = new STLExporter();
+      const result = exporter.parse(this.scene, { binary: true });
+      saveString(result, 'scene.stl');
+      break;
+    }
     }
   }
 
@@ -210,16 +210,16 @@ export class Renderer {
     const intersects = this._raycaster.intersectObjects([this.scene]);
 
     for (let i = 0; i < intersects.length; i++) {
-      if (intersects[i].object instanceof THREE.Mesh && intersects[i].object.type !== "TransformControlsPlane") {
-        this._onSelectModel(intersects[i].object as THREE.Mesh)
-        this.scene.add(this._transformControl)
-        this._transformControl.attach(intersects[i].object)
+      if (intersects[i].object instanceof THREE.Mesh && intersects[i].object.type !== 'TransformControlsPlane') {
+        this._onSelectModel(intersects[i].object as THREE.Mesh);
+        this.scene.add(this._transformControl);
+        this._transformControl.attach(intersects[i].object);
         return;
       }
     }
 
-    this._onSelectModel(null)
-    this._transformControl.detach()
-    this.scene.remove(this._transformControl)
+    this._onSelectModel(null);
+    this._transformControl.detach();
+    this.scene.remove(this._transformControl);
   }
 }

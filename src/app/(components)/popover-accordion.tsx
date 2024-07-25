@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Accordion } from './accordion'
-import { ThreeViewerIcon } from './icons/viewer'
-import { ClosableDialog } from './closable-dialog'
-import { t } from 'i18next'
+import React from 'react';
+import { Accordion } from './accordion';
+import { ThreeViewerIcon } from './icons/viewer';
+import { ClosableDialog } from './closable-dialog';
+import { t } from 'i18next';
 
 type Props = {
   content: React.ReactNode
@@ -11,9 +11,9 @@ type Props = {
 }
 
 export function PopOverAccordion(props: Props) {
-  const { content, open, style } = props
+  const { content, open, style } = props;
 
-  const handleClose = () => { }
+  const handleClose = () => { };
 
   return (
     <ClosableDialog
@@ -54,5 +54,5 @@ export function PopOverAccordion(props: Props) {
         }}
       ></Accordion>
     </ClosableDialog>
-  )
+  );
 }

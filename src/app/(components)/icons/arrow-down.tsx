@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 
 function DropdownArrow(props?: React.SVGProps<SVGSVGElement>) {
   return (
@@ -17,7 +17,7 @@ function DropdownArrow(props?: React.SVGProps<SVGSVGElement>) {
         fill="var(--Grey-800)"
       />
     </svg>
-  )
+  );
 }
 
-export const DropdownArrowIcon = React.memo(DropdownArrow)
+export const DropdownArrowIcon = React.memo(DropdownArrow);

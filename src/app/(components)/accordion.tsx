@@ -1,6 +1,6 @@
-import React from 'react'
-import { Accordion as MaterialAccordion, AccordionDetails, AccordionSummary } from '@mui/material'
-import { DropdownArrowIcon } from './icons/arrow-down'
+import React from 'react';
+import { Accordion as MaterialAccordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import { DropdownArrowIcon } from './icons/arrow-down';
 
 type AccordionProps = {
   content: React.ReactNode
@@ -11,7 +11,7 @@ type AccordionProps = {
 }
 
 export function Accordion(props: AccordionProps) {
-  const { content, summaryContent, style, summaryStyle, iconStyle } = props
+  const { content, summaryContent, style, summaryStyle, iconStyle } = props;
 
   return (
     <MaterialAccordion
@@ -39,5 +39,5 @@ export function Accordion(props: AccordionProps) {
       </AccordionSummary>
       <AccordionDetails style={{ padding: '0' }}>{content}</AccordionDetails>
     </MaterialAccordion>
-  )
+  );
 }

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { PopOverAccordion } from './popover-accordion';
 import { PropAndInput } from './props-input';
-import { useEffect } from 'react';
+import { useEffect, ChangeEvent } from 'react';
 
 type Props = {
   mesh: THREE.Mesh
@@ -9,13 +9,13 @@ type Props = {
 }
 
 export function AttributePanel(props: Props) {
-  const { mesh, paramsChanged } = props
+  const { mesh, paramsChanged } = props;
 
   useEffect(() => {
 
-  }, [paramsChanged])
+  }, [paramsChanged]);
 
-  const handleOpenFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOpenFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target?.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -31,7 +31,7 @@ export function AttributePanel(props: Props) {
   };
 
   return (
-    <div onClick={(event) => { event.stopPropagation() }}>
+    <div onClick={(event) => { event.stopPropagation(); }}>
       <PopOverAccordion open={true} content={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '8px', paddingRight: '8px', paddingBottom: '16px' }}>
           <div>
@@ -56,7 +56,7 @@ export function AttributePanel(props: Props) {
             <div style={{ color: '#ccc', fontSize: '16px' }}>Scale</div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', gap: '8px' }}>
               <PropAndInput name={'X'} value={String(mesh.scale.x)} onChange={(value) => {
-                mesh.scale.x = value
+                mesh.scale.x = value;
               }} />
               <PropAndInput name={'Y'} value={String(mesh.scale.y)} onChange={
                 (value) => mesh.scale.y = value
@@ -104,6 +104,6 @@ export function AttributePanel(props: Props) {
         </div>
       } />
     </div>
-  )
+  );
 
 }

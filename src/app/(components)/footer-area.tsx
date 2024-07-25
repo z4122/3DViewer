@@ -1,7 +1,6 @@
 import React, { SetStateAction, useCallback, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { GradientButton } from './button';
-import { RollingImages } from './rolling-images';
 import { classNames, isMobile } from '../utils/common';
 
 export function FooterArea() {
@@ -43,8 +42,8 @@ export function FooterArea() {
 
 
           <div className={'flex flex-row justify-between items-center p relative w-full'} >
-            <GradientButton className={'flex-1 h-12 p z-10 text-black'} content={"Create"} initColor={'#F8CF00'} endColor={'#FFE872'} />
-            <GradientButton className={'flex-1 h-12 p z-2'} content={"Popcorn"} initColor={'#BC4DDE'} endColor={'#D970FA'} />
+            <GradientButton className={'flex-1 h-12 p z-10 text-black'} content={'Create'} initColor={'#F8CF00'} endColor={'#FFE872'} />
+            <GradientButton className={'flex-1 h-12 p z-2'} content={'Popcorn'} initColor={'#BC4DDE'} endColor={'#D970FA'} />
           </div>
 
         </div> : <div className={'flex flex-row w-full justify-center items-center  mb-14'}>
@@ -72,11 +71,11 @@ export function FooterArea() {
           ></textarea>
 
           <div className={'flex flex-row justify-center items-center ml-4 p relative'} >
-            <GradientButton className={'w-36 h-12 p z-10 text-black'} content={"Create"} initColor={'#F8CF00'} endColor={'#FFE872'} />
-            <GradientButton className={'w-40 h-12 p absolute left-24 z-2 ml-2'} content={"Popcorn"} initColor={'#BC4DDE'} endColor={'#D970FA'} />
+            <GradientButton className={'w-36 h-12 p z-10 text-black'} content={'Create'} initColor={'#F8CF00'} endColor={'#FFE872'} />
+            <GradientButton className={'w-40 h-12 p absolute left-24 z-2 ml-2'} content={'Popcorn'} initColor={'#BC4DDE'} endColor={'#D970FA'} />
           </div>
         </div>}
     </>
 
-  )
+  );
 }
