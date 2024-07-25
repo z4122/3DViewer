@@ -5,8 +5,10 @@ import { Language } from './language';
 import Settings from './settings';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 export function Title() {
+  const { t } = useTranslation('common');
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -20,16 +22,16 @@ export function Title() {
       />
       <div className="flex items-center gap-4 align-middle text-base text-neutral-500">
         <Link className="cursor-pointer" href="/">
-          Product
+          {t('product')}
         </Link>
         <Link className="cursor-pointer" href="/pricing">
-          Pricing
+          {t('pricing')}
         </Link>
         <Link className="cursor-pointer" href="/blog">
-          Blog
+          {t('blog')}
         </Link>
         <Link className="cursor-pointer" href="/community">
-          Community
+          {t('community')}
         </Link>
         <Language />
         <a

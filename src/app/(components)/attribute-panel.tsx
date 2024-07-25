@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PopOverAccordion } from './popover-accordion';
 import { PropAndInput } from './props-input';
 import { useEffect, ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   mesh: THREE.Mesh
@@ -10,6 +11,8 @@ type Props = {
 
 export function AttributePanel(props: Props) {
   const { mesh, paramsChanged } = props;
+
+  const { t } = useTranslation('common');
 
   useEffect(() => {
 
@@ -35,7 +38,7 @@ export function AttributePanel(props: Props) {
       <PopOverAccordion open={true} content={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '8px', paddingRight: '8px', paddingBottom: '16px' }}>
           <div>
-            <div style={{ color: '#ccc', fontSize: '16px' }}>Position</div>
+            <div style={{ color: '#ccc', fontSize: '16px' }}>{t('position')}</div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', gap: '8px' }}>
               <PropAndInput name={'X'} value={String(mesh.position.x)} onChange={(value) => mesh.position.x = value} />
               <PropAndInput name={'Y'} value={String(mesh.position.y)} onChange={(value) => mesh.position.y = value} />
@@ -44,7 +47,7 @@ export function AttributePanel(props: Props) {
           </div>
 
           <div>
-            <div style={{ color: '#ccc', fontSize: '16px' }}>Rotate</div>
+            <div style={{ color: '#ccc', fontSize: '16px' }}>{t('rotation')}</div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', gap: '8px' }}>
               <PropAndInput name={'X'} value={String(mesh.rotation.x)} unit={'°'} onChange={(value) => mesh.rotation.x = value} />
               <PropAndInput name={'Y'} value={String(mesh.rotation.y)} unit={'°'} onChange={(value) => mesh.rotation.y = value} />
@@ -53,7 +56,7 @@ export function AttributePanel(props: Props) {
           </div>
 
           <div >
-            <div style={{ color: '#ccc', fontSize: '16px' }}>Scale</div>
+            <div style={{ color: '#ccc', fontSize: '16px' }}>{t('scale')}</div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', gap: '8px' }}>
               <PropAndInput name={'X'} value={String(mesh.scale.x)} onChange={(value) => {
                 mesh.scale.x = value;
@@ -66,7 +69,7 @@ export function AttributePanel(props: Props) {
           </div>
 
           <div>
-            <div style={{ color: '#ccc', fontSize: '16px' }}>Texture</div>
+            <div style={{ color: '#ccc', fontSize: '16px' }}>{t('texture')}</div>
             <input
               accept={
                 // Only accept three types of file.
@@ -97,7 +100,7 @@ export function AttributePanel(props: Props) {
                   backgroundColor: '#333',
                 }}
                 className='cursor-pointer'
-              >Upload Texture</div>
+              >{t('upload_texture')}</div>
             </label>
 
           </div>

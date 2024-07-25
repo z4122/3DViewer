@@ -6,6 +6,7 @@ import { Renderer } from '../core/renderer';
 import ExportDropDown from './export-drop-down';
 import * as THREE from 'three';
 import { AttributePanel } from './attribute-panel';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   handleClose: () => void
@@ -24,6 +25,8 @@ const CloseIconWrapper = styled('div')({
 });
 
 export function ThreeViewer(props: Props) {
+  const { t } = useTranslation('common');
+
   const { style, handleClose, glbFileUrl } = props;
 
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>();
@@ -90,8 +93,8 @@ export function ThreeViewer(props: Props) {
       </CloseIconWrapper>
 
       <div style={{ position: 'absolute', left: '32px', bottom: '32px' }}>
-        <div>Fake Model Name Is Here</div>
-        <div>Fake Prompt Is Here</div>
+        <div>{t('name_place_holder')}</div>
+        <div>{t('prompt_place_holder')}</div>
       </div>
 
       <div style={{ position: 'absolute', right: '32px', bottom: '32px' }}>
