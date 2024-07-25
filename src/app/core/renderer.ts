@@ -7,7 +7,7 @@ import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
 import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
 
 import { ScaleControls } from './scale-controls';
-import { saveToLocal } from '../utils/common';
+import { saveString, saveToLocal } from '../utils/common';
 
 
 
@@ -112,24 +112,33 @@ export class Renderer {
     });
   }
 
-  public exportAs(type: 'GLTF' | 'USDZ' | 'STL' | 'OBJ') {
+  public exportAs(type: 'gltf' | 'glb' | 'stl') {
+    let exporter: GLTFExporter | USDZExporter | STLExporter | OBJExporter;
     switch (type) {
-      case 'GLTF':
-        const exporter = new GLTFExporter();
-        exporter.parse(this.scene, (gltf) => {
-          saveToLocal(gltf)
+      case 'gltf': {
+        exporter = new GLTFExporter();
+        exporter.parse(this.scene, (result) => {
+          saveToLocal(result, type);
         }, (error) => {
-          console.log('gltf error', error)
+          console.log('exporter error', type, error);
         })
         break;
-      case 'USDZ':
-
+      }
+      case 'glb': {
+        exporter = new GLTFExporter();
+        exporter.parse(this.scene, (result) => {
+          saveToLocal(result, type);
+        }, (error) => {
+          console.log('exporter error', type, error);
+        }, { binary: true })
         break;
-      case 'STL':
+      }
+      case 'stl': {
+        exporter = new STLExporter();
+        const result = exporter.parse(this.scene, { binary: true });
+        saveString(result, 'scene.stl');
         break;
-
-      case 'OBJ':
-        break
+      }
     }
   }
 

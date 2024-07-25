@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 type Props = {
-  exportAs: (type: 'GLTF' | 'USDZ' | 'STL' | 'OBJ') => void
+  exportAs: (type: 'gltf' | 'glb' | 'stl') => void
 }
 
 export default function ExportDropDown(props: Props) {
@@ -26,7 +26,7 @@ export default function ExportDropDown(props: Props) {
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-              onClick={() => exportAs("GLTF")}
+              onClick={() => exportAs("gltf")}
             >
               GLTF
             </a>
@@ -35,31 +35,20 @@ export default function ExportDropDown(props: Props) {
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-              onClick={() => exportAs("USDZ")}
+              onClick={() => exportAs("glb")}
             >
-              USDZ
+              GLB
             </a>
           </MenuItem>
           <MenuItem>
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-              onClick={() => exportAs('STL')}
+              onClick={() => exportAs('stl')}
             >
               STL
             </a>
           </MenuItem>
-          <form action="#" method="POST">
-            <MenuItem>
-              <button
-                type="submit"
-                className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                onClick={() => exportAs('OBJ')}
-              >
-                OBJ
-              </button>
-            </MenuItem>
-          </form>
         </div>
       </MenuItems>
     </Menu>

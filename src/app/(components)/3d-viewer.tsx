@@ -46,7 +46,7 @@ export function ThreeViewer(props: Props) {
     }
   }, [glbFileUrl, render]);
 
-  const exportAs = (type: 'GLTF' | 'USDZ' | 'STL' | 'OBJ') => {
+  const exportAs = (type: 'gltf' | 'glb' | 'stl') => {
     render?.exportAs(type)
   }
 

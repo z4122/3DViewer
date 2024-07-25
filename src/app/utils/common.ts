@@ -12,20 +12,20 @@ function save(blob: Blob | MediaSource, filename: string) {
   link.click();
 }
 
-function saveString(text: BlobPart, filename: string) {
+export function saveString(text: BlobPart, filename: string) {
   save(new Blob([text], { type: 'text/plain' }), filename);
 }
 
 
-function saveArrayBuffer(buffer: string | ArrayBufferView | ArrayBuffer | Blob, filename: string) {
+export function saveArrayBuffer(buffer: string | ArrayBufferView | ArrayBuffer | Blob, filename: string) {
   save(new Blob([buffer], { type: 'application/octet-stream' }), filename);
 }
 
-export function saveToLocal(content: string | ArrayBuffer) {
+export function saveToLocal(content: { [key: string]: any; } | ArrayBuffer, type: 'gltf' | 'glb' | 'stl') {
   if (content instanceof ArrayBuffer) {
-    saveArrayBuffer(content, 'scene.glb');
+    saveArrayBuffer(content, 'scene.' + type);
   } else {
     const output = JSON.stringify(content, null, 2);
-    saveString(output, 'scene.gltf');
+    saveString(output, 'scene.' + type);
   }
 }
