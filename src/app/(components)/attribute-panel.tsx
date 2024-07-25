@@ -15,7 +15,7 @@ export function AttributePanel(props: Props) {
 
   const { t } = useTranslation('common');
 
-  const [isMirrored, setIsMirrored] = useState(false)
+  // const [isMirrored, setIsMirrored] = useState(false);
 
   useEffect(() => {
 
@@ -43,7 +43,7 @@ export function AttributePanel(props: Props) {
     //   }
     // })
     mesh.scale.y *= -1;
-  }
+  };
 
   return (
     <div onClick={(event) => { event.stopPropagation(); }}>

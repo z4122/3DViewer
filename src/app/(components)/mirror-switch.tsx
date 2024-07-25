@@ -1,5 +1,5 @@
 import { Switch, styled } from '@mui/material';
-import { useState } from 'react';
+import { useState, CSSProperties, ChangeEvent } from 'react';
 
 const Wrapper = styled(Switch)(({ theme }) => ({
   width: 32,
@@ -40,18 +40,18 @@ const Wrapper = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export type SCADSwitchProps = {
+export type SwitchProps = {
   checked: boolean;
   onChange: (checkd: boolean) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
-export function MirrorSwitch(props: SCADSwitchProps) {
+export function MirrorSwitch(props: SwitchProps) {
   const { checked, onChange, style } = props;
 
   const [checkedState, setCheckedState] = useState(checked);
 
-  const onSwichChanged = (event: React.ChangeEvent) => {
+  const onSwichChanged = (event: ChangeEvent) => {
     const newState = (event.target as HTMLInputElement).checked;
     setCheckedState(newState);
     onChange(newState);
