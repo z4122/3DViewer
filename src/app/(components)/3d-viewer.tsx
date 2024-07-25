@@ -4,7 +4,8 @@ import { CloseIcon } from './icons/close'
 import styled from "@mui/material/styles/styled";
 import { Renderer } from '../core/renderer';
 import ExportDropDown from './export-drop-down';
-
+import * as THREE from 'three';
+import { AttributePanel } from './attribute-panel';
 
 type Props = {
   handleClose: () => void
@@ -28,9 +29,19 @@ export function ThreeViewer(props: Props) {
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>();
   const [render, setRenderer] = useState<Renderer | null>();
 
+  const [currentMesh, setCurrentMesh] = useState<THREE.Mesh | null>(null)
+
+  const onSelectModel = (mesh: THREE.Mesh | null) => {
+    setCurrentMesh(mesh)
+  }
+
+  const exportAs = (type: 'gltf' | 'glb' | 'stl') => {
+    render?.exportAs(type)
+  }
+
   useEffect(() => {
     if (canvas) {
-      const renderer = new Renderer(canvas);
+      const renderer = new Renderer(canvas, onSelectModel);
       setRenderer(renderer);
       return () => {
         renderer.dispose();
@@ -46,9 +57,7 @@ export function ThreeViewer(props: Props) {
     }
   }, [glbFileUrl, render]);
 
-  const exportAs = (type: 'gltf' | 'glb' | 'stl') => {
-    render?.exportAs(type)
-  }
+
 
   return (
     <ClosableDialog
@@ -69,18 +78,20 @@ export function ThreeViewer(props: Props) {
       ref={setCanvas}
     ></canvas>
 
-      <CloseIconWrapper onClick={handleClose}>
-        <CloseIcon></CloseIcon>
-      </CloseIconWrapper>
+    {currentMesh && <AttributePanel mesh={currentMesh}/>}
 
-      <div style={{position: 'absolute', left: '32px', bottom: '32px'}}>
-        <div>Model Name Is Here</div>
-        <div>Prompt Fake Is Here</div>
-      </div>
+    <CloseIconWrapper onClick={handleClose}>
+      <CloseIcon></CloseIcon>
+    </CloseIconWrapper>
 
-      <div style={{position: 'absolute', right: '32px', bottom: '32px'}}>
-        <ExportDropDown exportAs={exportAs}/>
-      </div>
+    <div style={{position: 'absolute', left: '32px', bottom: '32px'}}>
+      <div>Fake Model Name Is Here</div>
+      <div>Fake Prompt Is Here</div>
+    </div>
+
+    <div style={{position: 'absolute', right: '32px', bottom: '32px'}}>
+      <ExportDropDown exportAs={exportAs}/>
+    </div>
     </ClosableDialog>
   )
 }

@@ -5,11 +5,8 @@ import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter';
 import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
 import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
-
 import { ScaleControls } from './scale-controls';
 import { saveString, saveToLocal } from '../utils/common';
-
-
 
 export class Renderer {
   public readonly webGLRenderer: THREE.WebGLRenderer;
@@ -36,8 +33,11 @@ export class Renderer {
 
   private _scaleControls: ScaleControls;
 
-  constructor(canvas: HTMLCanvasElement) {
+  private _onSelectModel: (mesh: THREE.Mesh | null) => void
+
+  constructor(canvas: HTMLCanvasElement, onSelectModel: (mesh: THREE.Mesh | null) => void) {
     this.canvas = canvas;
+    this._onSelectModel = onSelectModel
 
     this.webGLRenderer = new THREE.WebGLRenderer({
       canvas,
@@ -198,10 +198,13 @@ export class Renderer {
     const intersects = this._raycaster.intersectObjects([this.scene]);
 
     for (let i = 0; i < intersects.length; i++) {
+      this._onSelectModel(intersects[i].object as THREE.Mesh)
       this._scaleControls.showScaleControl(
         intersects[i].object as THREE.Mesh,
       );
       return;
     }
+
+    this._onSelectModel(null)
   }
 }

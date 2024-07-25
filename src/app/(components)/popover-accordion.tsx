@@ -13,18 +13,18 @@ type Props = {
 export function PopOverAccordion(props: Props) {
   const { content, open, style } = props
 
-  const handleClose = () => {}
+  const handleClose = () => { }
 
   return (
     <ClosableDialog
       style={{
         position: 'absolute',
-        top: '16px',
+        top: '30%',
         right: '16px',
-        width: '400px',
+        width: '300px',
         margin: 0,
-        backgroundColor: '#242424',
-        borderRadius: '16px',
+        backgroundColor: '#111111',
+        borderRadius: '8px',
         ...style
       }}
       open={open}
