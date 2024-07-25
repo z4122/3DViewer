@@ -1,7 +1,8 @@
 import React, { SetStateAction, useCallback, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { GradientButton } from './button';
-import { classNames, useIsMobile } from '../utils/common';
+import { classNames } from '../utils/common';
+import { useIsMobile } from './useIsMobile';
 
 export function FooterArea() {
   const { t } = useTranslation('common');

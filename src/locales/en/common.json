@@ -16,5 +16,6 @@
   "rotation": "Rotation",
   "scale": "Scale",
   "texture": "Texture",
-  "upload_texture": "Upload Texture"
+  "upload_texture": "Upload Texture",
+  "mirror": "Mirror"
 }

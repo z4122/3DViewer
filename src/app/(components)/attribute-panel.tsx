@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { PopOverAccordion } from './popover-accordion';
 import { PropAndInput } from './props-input';
-import { useEffect, ChangeEvent } from 'react';
+import { useEffect, ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MirrorSwitch } from './mirror-switch';
 
 type Props = {
   mesh: THREE.Mesh
@@ -13,6 +14,8 @@ export function AttributePanel(props: Props) {
   const { mesh, paramsChanged } = props;
 
   const { t } = useTranslation('common');
+
+  const [isMirrored, setIsMirrored] = useState(false)
 
   useEffect(() => {
 
@@ -32,6 +35,15 @@ export function AttributePanel(props: Props) {
     // Clear the input element's value
     event.target.value = '';
   };
+
+  const mirrorChange = () => {
+    // setIsMirrored((isMirrored: boolean) => {
+    //   return {
+    //     isMirrored: !isMirrored
+    //   }
+    // })
+    mesh.scale.y *= -1;
+  }
 
   return (
     <div onClick={(event) => { event.stopPropagation(); }}>
@@ -103,6 +115,11 @@ export function AttributePanel(props: Props) {
               >{t('upload_texture')}</div>
             </label>
 
+          </div>
+
+          <div>
+            <div style={{ color: '#ccc', }}>{t('mirror')}</div>
+            <MirrorSwitch checked={false} onChange={mirrorChange} />
           </div>
         </div>
       } />

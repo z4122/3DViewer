@@ -16,5 +16,6 @@
   "rotation": "旋转",
   "scale": "尺寸",
   "texture": "纹理",
-  "upload_texture": "上传纹理"
+  "upload_texture": "上传纹理",
+  "mirror": "镜像"
 }
